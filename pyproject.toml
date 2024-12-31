@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "sky-homework-12-2"
+version = "0.1.0"
+description = ""
+authors = ["Alex-Stas <alexander.stashchuk@gmail.com>"]
+readme = "README.md"
+packages = [{include = "sky_homework_12"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[tool.poetry.group.lint.dependencies]
+black = "^24.10.0"
+mypy = "^1.14.0"
+isort = "^5.13.2"
+flake8 = "^7.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_return_any = true
+exclude = 'venv'
+
+[tool.black]
+line-length = 119
+exclude = '''
+(
+  /(
+      \.git
+    | \.mypy_cache
+    | \.venv
+    | \tests
+  )/
+  | .flake8
+)
+'''
+
+[tool.isort]
+# максимальная длина строки
+line_length = 119
+force_single_line = 'True'
