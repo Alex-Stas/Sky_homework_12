@@ -44,3 +44,4 @@ exclude = '''
 # максимальная длина строки
 line_length = 119
 force_single_line = 'True'
+

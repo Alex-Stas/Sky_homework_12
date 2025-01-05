@@ -1,4 +1,6 @@
 from src.processing import filter_by_state
+from src.processing import sort_by_date
+
 
 if __name__ == "__main__":
 
@@ -10,3 +12,6 @@ if __name__ == "__main__":
     ]
     print(filter_by_state(test_list, "EXECUTED"))
     print(filter_by_state(test_list, 'CANCELED'))
+
+    print(sort_by_date(test_list, False))
+    print(sort_by_date(test_list))
