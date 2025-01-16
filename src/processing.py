@@ -10,6 +10,8 @@ def filter_by_state(
     значениями, по умолчанию статус EXECUTED"""
     filtered_list_of_operations = []
     for i in list_of_operations:
+        if "state" not in i:
+            raise KeyError('Status key is missing')
         if i["state"] == status:
             filtered_list_of_operations.append(i)
     return filtered_list_of_operations
