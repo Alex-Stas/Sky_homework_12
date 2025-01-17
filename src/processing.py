@@ -12,7 +12,7 @@ def filter_by_state(
     for i in list_of_operations:
         if "state" not in i:
             raise KeyError('One or more status keys are missing')
-        #В случае отсутствия в исходных данных ключа 'state' обработка останавливается
+        # В случае отсутствия в исходных данных ключа 'state' обработка останавливается
         if i["state"] == status:
             filtered_list_of_operations.append(i)
     return filtered_list_of_operations
