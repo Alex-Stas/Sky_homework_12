@@ -38,3 +38,29 @@ Installation:
 4. Then you can run the main.py file as follows 'python main.py'
 5. Both functions runs with testing data
 6. Or you can import both function from processing.py into any python module you like 
+
+Automatic tests are added for all modules.
+
+processing.py:
+    filter_by_state:
+        Основное тестирование по базовому списку (опции EXECUTED, CANCELED и по умолчанию)
+        Тестирование случая отсутствия ключа state
+    sort_by_date:
+        Тестирование основных случаев (по возрастанию/ убыванию и при отсутствующем аргументе)
+        Тестирование случая нестандартных форматов дат строкового
+        Тестирование случая отсутствия ключа date
+        Тестирование случая нестандартных форматов дат не строкового типа 
+
+masks.py:
+    get_mask_account:
+        Тестирование всех вариантов get_mask_card_number включая короткие номера, пустые и текстовые
+    get_mask_account: 
+        Тестирование всех вариантов get_mask_account включая короткие номера, пустые и текстовые
+
+widget.py:
+    mask_account_card:
+        Тестирование всех вариантов mask_account_card включая короткие номера и отсутствие описания для карт
+        Тестирование случая некорректных номеров счета и карт (пустые или нецифровые значения, в том числе вызванные коротким номером карты)
+    get_date:
+        Тестирование всех вариантов get_date включая короткие, неполные даты и ee отсутствие
+        Тестирование случая критической ошибки, если тип данных не корректный (не str)
