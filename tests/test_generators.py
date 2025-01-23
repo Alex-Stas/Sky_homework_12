@@ -1,13 +1,12 @@
-from typing import Dict
-from typing import List
-from typing import Union
-
+import pytest
 from src.generators import card_number_generator
 from src.generators import filter_by_currency
 from src.generators import transaction_descriptions
 
-if __name__ == "__main__":
-    transactions = [
+# Основной список для тестирования базовых вариантов
+@pytest.fixture
+def test_list():
+    test_list = [
         {
             "id": 939719570,
             "state": "EXECUTED",
@@ -54,18 +53,5 @@ if __name__ == "__main__":
             "to": "Счет 14211924144426031657",
         },
     ]
-
-    usd_transactions = filter_by_currency(transactions, "USD")
-    for _ in range(2):
-        print(next(usd_transactions))
-
-
-    descriptions = transaction_descriptions(transactions)
-    for _ in range(5):
-        print(next(descriptions))
-
-
-    for card_number in card_number_generator(1, 5):
-        print(card_number)
-
+    return test_list
 
