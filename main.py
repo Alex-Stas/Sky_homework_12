@@ -7,7 +7,7 @@ from src.generators import filter_by_currency
 from src.generators import transaction_descriptions
 
 if __name__ == "__main__":
-    transactions = [
+    transactions_list = [
         {
             "id": 939719570,
             "state": "EXECUTED",
@@ -55,13 +55,18 @@ if __name__ == "__main__":
         },
     ]
 
-    usd_transactions = filter_by_currency(transactions, "USD")
+
+    currency_code = 'USD'
+
+    result = filter_by_currency(transactions_list, currency_code)
     for _ in range(2):
-        print(next(usd_transactions))
+        print(next(result))
+    print(next(result))
+    print(next(result))
 
 
-    descriptions = transaction_descriptions(transactions)
-    for _ in range(5):
+    descriptions = transaction_descriptions(transactions_list)
+    for _ in range(6):
         print(next(descriptions))
 
 
