@@ -3,7 +3,7 @@ Repository for Sky Pro homeworks started in December 2024
 
 Older functions/modules are masks.py and widget.py that saved from previous homeworks.
 
-Actual module is Processing.py with functions:
+Module Processing.py with functions:
 
 filter_by_state - Функция фильтрует список словарей с данными по транзакциям
 по статусу (ключ 'state') и выдает новый список только с заданными значениями,
@@ -28,7 +28,80 @@ Example with descending_order = True or empty
 {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'},
 {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'}]
 
-Testing data for both functions is in main module.
+Module generators.py with functions:
+
+filter_by_currency - генератор, принимает на вход список словарей, представляющих транзакции и возвращает
+итератор, который поочередно выдает не меняя формата транзакции,
+где валюта операции соответствует заданной (например, USD).
+
+Пример:
+
+usd_transactions = filter_by_currency(transactions, "USD")
+for _ in range(2):
+    print(next(usd_transactions))
+
+>>> {
+          "id": 939719570,
+          "state": "EXECUTED",
+          "date": "2018-06-30T02:08:58.425572",
+          "operationAmount": {
+              "amount": "9824.07",
+              "currency": {
+                  "name": "USD",
+                  "code": "USD"
+              }
+          },
+          "description": "Перевод организации",
+          "from": "Счет 75106830613657916952",
+          "to": "Счет 11776614605963066702"
+      }
+      {
+              "id": 142264268,
+              "state": "EXECUTED",
+              "date": "2019-04-04T23:20:05.206878",
+              "operationAmount": {
+                  "amount": "79114.93",
+                  "currency": {
+                      "name": "USD",
+                      "code": "USD"
+                  }
+              },
+              "description": "Перевод со счета на счет",
+              "from": "Счет 19708645243227258542",
+              "to": "Счет 75651667383060284188"
+
+transaction_descriptions - генератор, принимает список словарей с транзакциями и возвращает описание
+каждой операции по очереди.
+
+Пример:
+
+descriptions = transaction_descriptions(transactions)
+for _ in range(5):
+    print(next(descriptions))
+
+>>> Перевод организации
+    Перевод со счета на счет
+    Перевод со счета на счет
+    Перевод с карты на карту
+    Перевод организации
+
+card_number_generator - генератор, выдает номера банковских карт в формате 
+XXXX XXXX XXXX XXXX,  где Х — цифра номера карты, в заданном диапазоне
+от 0000 0000 0000 0001 до 9999 9999 9999 9999.
+Исходя из заданных начального и конечного значения диапазона.
+
+Пример:
+
+for card_number in card_number_generator(1, 5):
+    print(card_number)
+
+>>> 0000 0000 0000 0001
+    0000 0000 0000 0002
+    0000 0000 0000 0003
+    0000 0000 0000 0004
+    0000 0000 0000 0005
+
+Working and pre-testing data for generators is in main module.
 
 Installation:
 
@@ -64,3 +137,19 @@ widget.py:
     get_date:
         Тестирование всех вариантов get_date включая короткие, неполные даты и ee отсутствие
         Тестирование случая критической ошибки, если тип данных не корректный (не str)
+
+generators.py:
+    filter_by_currency:
+        Тестирование выбора по валюте
+        Тестирование с отсутствующими ключами (транзакции должны пропускаться без ошибок)
+        Обработка конца массива данных
+        Обработка пустого списка
+        Обработка отсутствия заданной валюты в списке
+    transaction_descriptions:
+        Базовое тестирование - вывод описаний операций
+        Тестирование с отсутствующими ключами (транзакции должны пропускаться)
+        Обработка окончания списка
+        Обработка пустого списка
+    card_number_generator:
+        Тестирование генератора на диапазонах перехода через четвертую цифру,
+        на максимальные и минимальные значения
