@@ -7,7 +7,7 @@ import time
 Вывод в файл, если его имя дано в качестве аргумента или в консоль при его отсутствии.
     
 """
-def function_log(filename='log//function_log.txt'):
+def log(filename=None):
     def decorator(func):
         def wrapper(*args, **kwargs):
             start_time = time.time()

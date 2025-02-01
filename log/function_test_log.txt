@@ -1,0 +1,1 @@
+Functon func_file stops with error: division by zero. Input data: (2, 0), {}
