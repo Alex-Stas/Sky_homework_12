@@ -1,8 +1,9 @@
 from src.masks import get_mask_account
 from src.masks import get_mask_card_number
-from src.decorators import log
+# from src.decorators import log
 
-# Для тестирования декоратора log - раскомментировать строку ниже!
+
+# Для тестирования декоратора log - раскомментировать строку ниже + import log!
 # @log(filename='log//function_log.txt')
 def mask_account_card(account_card_description: str) -> str:
     """Определяет вариант введенного номера, карта или счет, вызывает соответствующую функцию маскировки
