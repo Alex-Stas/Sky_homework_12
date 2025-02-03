@@ -15,7 +15,7 @@ if __name__ == "__main__":
     #
     # for i in test_data:
     #     mask_account_card(i)
-    #
+
     # incorrect_data = ["Счет ", "Счет A", "Visa Gold 599941422842635", "Visa Gold A99941422842635"]
     # mask_account_card(incorrect_data[1])
     # ********************************
