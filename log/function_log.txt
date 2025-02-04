@@ -1,0 +1,21 @@
+Functon mask_account_card stops with error: Unacceptable account number. Input data: ('Счет A',), {}
+Functon mask_account_card stops with error: Unacceptable account number. Input data: ('Счет A',), {}
+Functon mask_account_card started at 1738577179.82 finished at 1738577179.82 its output: Maestro 1596 83** **** 5199
+Functon mask_account_card started at 1738577179.83 finished at 1738577179.83 its output: Счет **9589
+Functon mask_account_card started at 1738577179.83 finished at 1738577179.83 its output: MasterCard 7158 30** **** 6758
+Functon mask_account_card started at 1738577179.83 finished at 1738577179.83 its output: Счет **5560
+Functon mask_account_card started at 1738577179.83 finished at 1738577179.83 its output: Visa Classic 6831 98** **** 7658
+Functon mask_account_card started at 1738577179.83 finished at 1738577179.83 its output: Visa Platinum 8990 92** **** 5229
+Functon mask_account_card started at 1738577179.84 finished at 1738577179.84 its output: Visa Gold 5999 41** **** 6353
+Functon mask_account_card started at 1738577179.84 finished at 1738577179.84 its output: Счет **4305
+Functon mask_account_card started at 1738577179.84 finished at 1738577179.84 its output: Счет **1
+Functon mask_account_card started at 1738577179.84 finished at 1738577179.84 its output: Счет **1234
+Functon mask_account_card started at 1738577179.84 finished at 1738577179.84 its output: Счет **2345
+Functon mask_account_card started at 1738577179.84 finished at 1738577179.84 its output: Счет **3456
+Functon mask_account_card started at 1738577179.85 finished at 1738577179.85 its output: 1234 56** **** 3456
+Functon mask_account_card started at 1738577179.85 finished at 1738577179.85 its output: 1234 ** **** 1234
+Functon mask_account_card started at 1738577179.85 finished at 1738577179.85 its output: 1 ** **** 1
+Functon mask_account_card stops with error: Unacceptable account number. Input data: ('Счет ',), {}
+Functon mask_account_card stops with error: Unacceptable account number. Input data: ('Счет A',), {}
+Functon mask_account_card stops with error: Unacceptable card number. Input data: ('Visa Gold 599941422842635',), {}
+Functon mask_account_card stops with error: Unacceptable card number. Input data: ('Visa Gold A99941422842635',), {}
