@@ -19,7 +19,7 @@ def get_transactions_from_file(file_path: str) -> list:
 
     return transactions_list
 
-
+#
 if __name__ == '__main__':
-    result = get_transactions_from_file('../data/operations.json')
+    result = get_transactions_from_file('../data/test_operations.json')
     print(result)
