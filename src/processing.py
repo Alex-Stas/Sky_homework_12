@@ -11,7 +11,7 @@ def filter_by_state(
     filtered_list_of_operations = []
     for i in list_of_operations:
         if "state" not in i:
-            raise KeyError('One or more status keys are missing')
+            raise KeyError("One or more status keys are missing")
         # В случае отсутствия в исходных данных ключа 'state' обработка останавливается
         if i["state"] == status:
             filtered_list_of_operations.append(i)
@@ -25,8 +25,8 @@ def sort_by_date(
     в случае аргумента descending_order = True первыми выводятся новые операции"""
     for i in list_of_operations:
         if "date" not in i:
-            raise KeyError('One or more date keys are missing')
-        if not isinstance(i['date'], str):
-            raise TypeError('Date must be string')
+            raise KeyError("One or more date keys are missing")
+        if not isinstance(i["date"], str):
+            raise TypeError("Date must be string")
     sorted_list_of_operations = sorted(list_of_operations, key=lambda x: x["date"], reverse=descending_order)
     return sorted_list_of_operations

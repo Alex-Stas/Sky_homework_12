@@ -1,6 +1,9 @@
 # import pytest
 from src.utils import get_transactions_from_file
 
+# Тестирование с помощью тестовых файлов поскольку модуль на данный момент
+# не выполняет большого объема обработки и настройка тестирования корректировкой файлов
+# получается гибче, чем подменой.
 
 # Корректный вывод utils.py после обработки тестового файла test_operations.json
 utils_correct_output = [
@@ -32,17 +35,23 @@ utils_correct_output = [
     },
 ]
 
-def test_get_transactions_from_file_correct():
-    assert get_transactions_from_file('./data/test_operations.json') == utils_correct_output
 
+# Тестирование обработки корректных данных - файл в наличии с корректной структурой
+def test_get_transactions_from_file_correct():
+    assert get_transactions_from_file("./data/test_operations.json") == utils_correct_output
+
+
+# Тестирование обработки отсутствия файла, вывод сообщения и пустого списка
 def test_get_transactions_from_file_no_file(capsys):
-    result = get_transactions_from_file('./data/test_operations2.json')
+    result = get_transactions_from_file("./data/test_operations2.json")
     result_str = str(capsys.readouterr())
     assert result == []
     assert result_str == "CaptureResult(out='Файл не найден\\n', err='')"
 
+
+# Тестирование обработки некорректной структуры в файле или отсутствия данных, вывод сообщения и пустого списка
 def test_get_transactions_from_file_bad_format_or_empty(capsys):
-    result = get_transactions_from_file('./data/test_operations_empty.json')
+    result = get_transactions_from_file("./data/test_operations_empty.json")
     result_str = str(capsys.readouterr())
     assert result == []
     assert result_str == "CaptureResult(out='Некорректный список транзакций\\n', err='')"
