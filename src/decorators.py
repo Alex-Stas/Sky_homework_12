@@ -15,8 +15,10 @@ def log(filename=None):
             try:
                 result = func(*args, **kwargs)
                 finish_time = time.time()
-                log_message = (f"Functon {func.__name__} started at {start_time:.2f} finished at {finish_time:.2f}"
-                               f" its output: {result}")
+                log_message = (
+                    f"Functon {func.__name__} started at {start_time:.2f} finished at {finish_time:.2f}"
+                    f" its output: {result}"
+                )
                 return result
             except Exception as error:
                 finish_time = time.time()

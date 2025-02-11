@@ -22,7 +22,7 @@ from src.widget import mask_account_card
         ("1234567890123456", "1234 56** **** 3456"),
         ("1234", "1234 ** **** 1234"),
         ("1", "1 ** **** 1"),
-    ]
+    ],
 )
 def test_get_mask_account_card(account_card_description, expected):
     assert mask_account_card(account_card_description) == expected
@@ -59,7 +59,7 @@ def test_mask_account_card_exceptions(account_card_description_exception_list):
         ("2024", "..2024"),
         ("2024-10", ".10.2024"),
         ("", ".."),
-    ]
+    ],
 )
 def test_get_date(long_date, expected):
     assert get_date(long_date) == expected
