@@ -10,11 +10,14 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger()
+# Сохранен альтернативный (первоначальный) вариант настройки logging
+# ********************************
 # logger.setLevel(logging.DEBUG)
 # file_handler = logging.FileHandler('../logs/utils.log')
 # file_formatter = logging.Formatter('%(asctime)s:%(module)s:%(levelname)s:%(message)s')
 # file_handler.setFormatter(file_formatter)
 # logger.addHandler(file_handler)
+# ********************************
 
 
 def get_transactions_from_file(file_path: str) -> list:
