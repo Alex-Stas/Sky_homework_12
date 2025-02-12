@@ -3,6 +3,23 @@ Repository for Sky Pro homeworks started in December 2024
 
 Older functions/modules are masks.py and widget.py that saved from previous homeworks.
 
+***NEW!!! 11/02/2025***
+Module masks.py with functions:
+
+get_mask_card_number - Функция принимает на вход номер карты в виде числа и возвращает
+    маску номера по правилу XXXX XX** **** XXXX
+    Функция работает с любыми входными данными без контроля их корректности!
+
+def get_mask_account - Функция принимает на вход номер счета в виде числа и возвращает
+    маску номера по правилу **XXXX
+    Функция работает с любыми входными данными без контроля их корректности!
+
+в модуле masks.py реализовано логирование начала и окончания работы последнего запуска с выводом в файл logs/masks.log
+
+Working and pre-testing data currently commented with note.
+
+***END OF NEW INFO DTD 11/02/2025***
+
 Module Processing.py with functions:
 
 filter_by_state - Функция фильтрует список словарей с данными по транзакциям
@@ -130,6 +147,9 @@ Module utils.py with function:
 Функция принимает на вход путь до JSON-файла и возвращает список словарей
 с данными о финансовых транзакциях. Если файл пустой, содержит не список или не найден,
 функция возвращает пустой список.
+
+в модуле utils.py реализовано логирование начала, окончания работы и сообщений об ошибках 
+последнего запуска с выводом в файл logs/utils.log
 
 Working and pre-testing data currently commented with note.
 
