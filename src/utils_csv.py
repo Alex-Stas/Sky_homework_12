@@ -6,7 +6,6 @@ def get_transactions_from_csv_file(file_path: str) -> list:
     и возвращает список словарей с данными о финансовых транзакциях.
     Если файл не найден, функция возвращает пустой список."""
 
-    # transactions_list = []
     try:
         with open(file_path, "r", encoding="utf-8") as transactions_list_file:
             transactions_list = list(csv.DictReader(transactions_list_file, delimiter=";"))
