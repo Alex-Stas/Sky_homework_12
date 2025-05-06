@@ -1,6 +1,5 @@
-# Для тестирования декоратора log - раскомментировать import
-# from src.widget import mask_account_card
-# from src.decorators import log
+from src.utils import get_transactions_from_file
+from src.processing import filter_by_state
 
 
 def main():
@@ -48,14 +47,15 @@ def main():
     chosen_option_date_sorting = input().upper()
     while chosen_option_date_sorting not in date_sorting_data:
         chosen_option_date_sorting = input("Пожалуйста, вводите только Да или Нет\n").upper()
+    if chosen_option_date_sorting == 'ДА':
+        order_sorting_message = "Отсортировать по возрастанию или по убыванию? по возрастанию/по убыванию"
+        order_sorting_data = ["ПО ВОЗРАСТАНИЮ", "ПО УБЫВАНИЮ"]
 
-    order_sorting_message = "Отсортировать по возрастанию или по убыванию? по возрастанию/по убыванию"
-    order_sorting_data = ["ПО ВОЗРАСТАНИЮ", "ПО УБЫВАНИЮ"]
-
-    print(order_sorting_message)
-    chosen_option_order_sorting = input().upper()
-    while chosen_option_order_sorting not in order_sorting_data:
-        chosen_option_order_sorting = input("Пожалуйста, вводите только по возрастанию или по убыванию\n").upper()
+        print(order_sorting_message)
+        chosen_option_order_sorting = input().upper()
+        while chosen_option_order_sorting not in order_sorting_data:
+            chosen_option_order_sorting = input("Пожалуйста, вводите только по возрастанию или по убыванию\n").upper()
+        chosen_option_order_sorting = chosen_option_order_sorting == order_sorting_data[1]
 
     rouble_filter_message = "Выводить только рублевые транзакции? Да / Нет"
     rouble_filter_data = ["ДА", "НЕТ"]
@@ -87,7 +87,9 @@ def main():
     )
     # match chosen_option_file:
     #     case '1':
-    #         print(1)
+    #         transactions = get_transactions_from_file('.\data\operations.json')
+    #         transactions_filtered_by_status = filter_by_state(transactions,chosen_option_status)
+    #
     #     case '2':
     #         print(2)
     #     case '3':
