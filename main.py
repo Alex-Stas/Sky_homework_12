@@ -47,7 +47,7 @@ def main():
     chosen_option_date_sorting = input().upper()
     while chosen_option_date_sorting not in date_sorting_data:
         chosen_option_date_sorting = input("Пожалуйста, вводите только Да или Нет\n").upper()
-    if chosen_option_date_sorting == 'ДА':
+    if chosen_option_date_sorting == "ДА":
         order_sorting_message = "Отсортировать по возрастанию или по убыванию? по возрастанию/по убыванию"
         order_sorting_data = ["ПО ВОЗРАСТАНИЮ", "ПО УБЫВАНИЮ"]
 

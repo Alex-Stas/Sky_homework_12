@@ -1,31 +1,30 @@
 import re
+from collections import Counter
 from typing import Dict
 from typing import List
 from typing import Union
 
 
-def filter_transaction_by_word(
-    list_of_operations: List[Dict[str, Union[str, int]]], word: Union[str, int, float], field: str = "description"
-) -> List[Dict[str, Union[str, int]]]:
-    """Функция фильтрует список транзакций по наличию заданной подстроки (может быть задано и
-    регулярное выражение) в определенном поле, по умолчанию в description
-    и выдает новый список только с заданными значениями"""
+def transaction_statistics_by_field(
+    list_of_operations: List[Dict[str, Union[str, int]]], field: str = "description"
+) -> dict[str | int, int]:
+    """Функция принимает список словарей с данными о транзакциях и поле для получения
+    статистики по нему. Возвращает словарь, в котором ключи — это названия категорий,
+    а значения — количество операций в каждой категории по выбранному полю.
+    По умолчанию (основной функционал) выводятся категории операций из поля description"""
 
-    # Дополнительный фильтр на операции с отсутствующими ключами - исключение транзакций с KeyError
+    # Исключение транзакций, если введено отсутствующее поле (KeyError)
     # и одновременно проверка на формат файла - выводится сообщение и пустой список
     try:
-        filtered_list_of_operations_all_keys = [item for item in list_of_operations if field in item]
+        list_of_operations_by_field = [item[field] for item in list_of_operations]
     except TypeError:
         print("Некорректный формат файла транзакций")
-        return []
-    word = str(word)
-    pattern = f"{word}"
-    filtered_list_of_operations = [
-        item
-        for item in filtered_list_of_operations_all_keys
-        if re.search(pattern, str(item[field]), flags=re.IGNORECASE)
-    ]
-    return filtered_list_of_operations
+        return {}
+    except KeyError:
+        print("Отсутствует заданное поле для выбора категорий")
+        return {}
+    statistic_by_field = dict(Counter(list_of_operations_by_field))
+    return statistic_by_field
 
 
 # ниже код для тестирования - удалить в финальной версии
@@ -121,4 +120,4 @@ def filter_transaction_by_word(
 #         },
 #     ]
 #
-#     print(filter_transaction_by_word(test_list_of_transaction,23182, 'amount' ))
+#     print(transaction_statistics_by_field(test_list_of_transaction, "state"))
