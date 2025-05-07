@@ -25,6 +25,7 @@ def select_file():
     }
 
     print(greetings)
+    global chosen_option_file
     chosen_option_file = input()
     while not chosen_option_file.isnumeric():
         chosen_option_file = input(f"{file_selection_data['wrong selection']}\n")
@@ -151,17 +152,51 @@ def output_print(transaction_list):
                 print(f"{i['from']} -> {i['to']}")
         except KeyError:
             print(f"{i['to']}")
-        # С учетом другого формата суммы в случае загрузки из JSON-файла
-        try:
-            print(f"Сумма: {i['amount']} {i['currency_name']}")
-        except KeyError:
-            print(f"Сумма: {i['operationAmount']['amount']} {i['operationAmount']['currency']['name']}")
+        print(f"Сумма: {i['amount']} {i['currency_name']}")
     return
+
+
+def flatten_dict(d, parent_key=""):
+    """Функция для обработки списка транзакций из JSON файла - удаление иерархии в сумме транзакций
+    скопирована как готовая с сайта sky pro"""
+
+    flat_dict = {}
+    for k, v in d.items():
+        new_key = f"{parent_key}{k}_" if parent_key else k
+        if isinstance(v, dict):
+            flat_dict.update(flatten_dict(v, new_key))
+        else:
+            flat_dict[new_key] = v
+    return flat_dict
+
+
+def flatten_list(transaction_list_json):
+    """Функция для обработки списка транзакций из JSON файла - переименование полей в стандартные
+    после удаления иерархии в сумме транзакций"""
+
+    flatten_list_result = []
+    for i in transaction_list_json:
+        flatten_dict_change_keys = flatten_dict(i)
+        try:
+            flatten_dict_change_keys["amount"] = flatten_dict_change_keys.pop("operationAmountamount_")
+            flatten_dict_change_keys["currency_name"] = flatten_dict_change_keys.pop("operationAmountcurrency_name_")
+            flatten_dict_change_keys["currency_code"] = flatten_dict_change_keys.pop("operationAmountcurrency_code_")
+            flatten_list_result.append(flatten_dict_change_keys)
+        except KeyError:
+            flatten_list_result.append(flatten_dict_change_keys)
+    return flatten_list_result
 
 
 def main():
     """Функция последовательно запускает функции запросов и обработки списка транзакций"""
-    transaction_list = select_file()
+    transaction_list_from_file = select_file()
+    # удаление иерархии словарей в сумме в списке из json и приведение полей к стандартному виду
+    # для совместимости дальнейшей обработки
+    if chosen_option_file == "1":
+        transaction_list = flatten_list(transaction_list_from_file)
+    else:
+        transaction_list = flatten_list(transaction_list_from_file)
+
     transactions_list_filtered_by_state = status_selection(transaction_list)
     transactions_list_sorted_by_date = date_sorting(transactions_list_filtered_by_state)
     transactions_list_filtered_by_rouble = rouble_filter(transactions_list_sorted_by_date)

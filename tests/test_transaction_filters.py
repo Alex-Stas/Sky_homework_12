@@ -199,5 +199,6 @@ def test_filter_transaction_by_word_no_field(test_list):
     assert filter_transaction_by_word(test_list, "на карту", "descr") == []
 
 
+# Тестирование случая некоректного формата списка транзакций
 def test_filter_transaction_by_word_wrong_format(list_wrong):
     assert filter_transaction_by_word(list_wrong, "на карту") == []
